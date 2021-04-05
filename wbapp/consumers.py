@@ -1,0 +1,19 @@
+from channels.generic.websocket import AsyncWebsocketConsumer
+import json
+from random import randint
+from asyncio import sleep
+from .models import CFS
+from channels.db import database_sync_to_async
+from django.contrib.auth.models import User
+from django.core import serializers
+
+
+class GraphConsumer(AsyncWebsocketConsumer):
+    async def connect(self):
+        await self.accept()
+
+        for i in range(1000):
+            await self.send(serializers.serialize('json', [CFS.objects.all(), ]))
+            await sleep(1)
+
+
