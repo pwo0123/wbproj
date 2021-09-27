@@ -1,0 +1,49 @@
+<html>
+<head>
+    <title>CFS TEST</title>
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous">
+    </script>
+    <script>
+
+        let data_request = function () {
+            $.ajax({
+                url: '/cfslist/',
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+
+                    let i;
+                    for(i = 0; i < data.length; i++ ){
+                        let new_div = document.createElement("div");
+                        new_div.innerHTML = data[i]['address'];
+                        document.getElementById('activecallsdiv').appendChild(new_div);
+
+                    }
+
+                    },
+                error: function () {
+                    console.log('error: cannot reach /cfslist/');
+                }
+            });
+        };
+        setInterval(data_request, 2000)
+
+
+    </script>
+
+
+</head>
+<body>
+
+<h1>Active Calls:</h1>
+
+<div id="activecallsdiv"></div>
+
+
+</body>
+
+
+</html>

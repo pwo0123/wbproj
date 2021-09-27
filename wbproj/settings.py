@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'channels',
     'wbapp',
+    'explorer'
 ]
 
 MIDDLEWARE = [
@@ -135,3 +136,6 @@ CHANNEL_LAYERS = {
 
 
 }
+
+EXPLORER_CONNECTIONS = { 'Default': 'default' }
+EXPLORER_DEFAULT_CONNECTION = 'default'

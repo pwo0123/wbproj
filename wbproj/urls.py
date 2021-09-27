@@ -6,5 +6,7 @@ import wbapp
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('wbapp.urls'))
+    path('', include('wbapp.urls')),
+    path('explorer/', include('explorer.urls')),
+
 ]

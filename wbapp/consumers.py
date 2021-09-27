@@ -8,12 +8,16 @@ from django.contrib.auth.models import User
 from django.core import serializers
 
 
+@database_sync_to_async
+def getinfo(self):
+    return CFS.objects.all()
+
+
 class GraphConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         await self.accept()
 
-        for i in range(1000):
-            await self.send(serializers.serialize('json', [CFS.objects.all(), ]))
-            await sleep(1)
+        await self.send(await getinfo(self))
+
 
 
